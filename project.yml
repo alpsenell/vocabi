@@ -56,6 +56,19 @@ targets:
         CODE_SIGN_ENTITLEMENTS: Widget/WidgetAppWidget.entitlements
         SKIP_INSTALL: true
 schemes:
+  WidgetAppWidget:
+    build:
+      targets:
+        WidgetAppWidget: all
+        WidgetApp: all
+    run:
+      config: Debug
+      executable: WidgetApp
+      launchAutomaticallySubstyle: 2
+      environmentVariables:
+        _XCWidgetKind: VocabiWordWidget
+        _XCWidgetDefaultView: timeline
+        _XCWidgetFamily: medium
   WidgetApp:
     build:
       targets:
