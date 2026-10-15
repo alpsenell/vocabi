@@ -1,0 +1,32 @@
+Telefonuna günde onlarca kez bakıyorsun. Vocabi, bu bakışların bir kısmını yeni kelimelere dönüştürür.
+
+Ana ekranına bir Vocabi widget'ı ekle. Üstte öğrendiğin dildeki kelime, altında da kendi dilinde anlamı görünür. Uygulama açmana ya da seri tutmana gerek yok; kelimeyi başka bir şey yaparken öğrenirsin.
+
+KELİMELER ANA EKRANINDA
+• Küçük, orta ve büyük widget'lar. Büyük olanda kelimenin nasıl kullanıldığını gösteren örnek bir cümle de var.
+• İstediğin kadar widget ekle. Her birine ayrı bir yuva ata, hepsi farklı kelime göstersin; aynı kelime iki kez çıkmaz.
+• Kelimeye dokununca uygulamada tüm detaylarıyla açılır.
+
+KENDİ TEMPONDA ÖĞREN
+• Her saat, her gün ya da her hafta yeni bir kelime.
+• Ya da dokunma modunu seç: widget'a dokun, uygulamayı açmadan sıradaki kelime gelsin.
+
+DÖRT DİL, İSTEDİĞİN EŞLEŞME
+• İngilizce, Türkçe, Fransızca ve İspanyolca.
+• Bildiğin dili ve öğrenmek istediğin dili seç: Türkçeden İngilizceye, Fransızcadan İspanyolcaya… Hangi eşleşmeyi istersen.
+
+SANA UYGUN KELİMELER
+• Başlangıç, orta ve ileri seviye. Dilediğin gibi karıştırabilirsin.
+• Konular: iş, okul, günlük yaşam, seyahat, teknoloji, sağlık ve yemek.
+• Açık tanımları ve örnek cümleleriyle özenle seçilmiş yüzlerce kelime.
+
+KENDİNİ SINA, SONRA YARIŞ
+• Test, widget'larında gördüğün kelimelerden hazırlanır. Yani her soru gerçekten karşılaştığın bir kelimeyi yoklar.
+• Her turda 10 çoktan seçmeli soru. Hızlı cevap verene ek puan.
+• Puanını dünya sıralamasına gönder; bugün, bu hafta ve bu ay kaçıncı olduğunu gör.
+
+GİZLİLİĞİNE SAYGILI
+• Reklam yok, takip yok.
+• Sıralamada yalnızca seçtiğin takma ad görünür. Puanlar Apple'ın iCloud'unda saklanır.
+
+İlk widget'ını ekle, ana ekranında öğrenmeye başla.

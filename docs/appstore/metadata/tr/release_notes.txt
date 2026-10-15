@@ -1,0 +1,11 @@
+Vocabi 1.0'a hoş geldin!
+
+• Küçük, orta ve büyük ana ekran widget'ları
+• Birden fazla widget ekle, her biri farklı bir kelime göstersin
+• Saatlik, günlük, haftalık yenileme ya da dokunarak sıradaki kelime
+• İngilizce, Türkçe, Fransızca ve İspanyolca, istediğin eşleşmeyle
+• Seviye ve konu seçimi
+• Gördüğün kelimelerden oluşan 10 soruluk hızlı test
+• Günlük, haftalık ve aylık dünya sıralaması
+
+Vocabi'yi denediğin için teşekkürler, görüşlerini bekliyoruz!

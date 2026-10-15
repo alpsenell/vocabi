@@ -1,0 +1,11 @@
+Welcome to Vocabi 1.0!
+
+• Home-screen widgets in small, medium and large sizes
+• Run several widgets at once, each showing a different word
+• Choose hourly, daily or weekly refresh, or tap the widget for the next word
+• English, Turkish, French and Spanish in any pair
+• Pick your level and topics
+• Quick 10-question quiz built from the words you've seen
+• Daily, weekly and monthly global leaderboards
+
+Thanks for trying Vocabi! We'd love to hear what you think.

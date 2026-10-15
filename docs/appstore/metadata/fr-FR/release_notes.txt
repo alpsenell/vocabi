@@ -1,0 +1,11 @@
+Bienvenue dans Vocabi 1.0 !
+
+• Widgets d'écran d'accueil en petite, moyenne et grande taille
+• Plusieurs widgets à la fois, chacun avec un mot différent
+• Renouvellement toutes les heures, chaque jour, chaque semaine, ou d'un simple toucher
+• Anglais, turc, français et espagnol, dans la combinaison de votre choix
+• Choix du niveau et des thèmes
+• Quiz express de 10 questions sur les mots déjà vus
+• Classements mondiaux du jour, de la semaine et du mois
+
+Merci d'essayer Vocabi, vos retours nous intéressent !

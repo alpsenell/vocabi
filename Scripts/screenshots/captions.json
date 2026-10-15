@@ -1,0 +1,35 @@
+{
+  "_comment": "Captions are matched to raw/<locale>/*.png in sorted filename order. A key can also be a file stem (e.g. \"03-quiz\") to pin a caption to one file.",
+  "en-US": [
+    "Learn a word every hour, right on your home screen",
+    "Stack widgets. Every one shows a different word.",
+    "Hourly, daily, weekly or one tap at a time",
+    "English, Turkish, French and Spanish, in any pair",
+    "Quiz yourself on the words you've seen",
+    "Climb the global leaderboard"
+  ],
+  "tr": [
+    "Her saat yeni bir kelime, doğrudan ana ekranında",
+    "Widget'ları yan yana koy, her biri farklı kelime göstersin",
+    "Saatlik, günlük, haftalık ya da tek dokunuşla",
+    "İngilizce, Türkçe, Fransızca, İspanyolca: dilediğin eşleşme",
+    "Gördüğün kelimelerle kendini sına",
+    "Dünya sıralamasında zirveye çık"
+  ],
+  "fr-FR": [
+    "Un mot par heure, directement sur votre écran d'accueil",
+    "Plusieurs widgets, un mot différent sur chacun",
+    "Chaque heure, chaque jour, chaque semaine… ou d'un toucher",
+    "Anglais, turc, français, espagnol : à combiner librement",
+    "Testez-vous sur les mots déjà vus",
+    "Grimpez au classement mondial"
+  ],
+  "es-ES": [
+    "Una palabra cada hora, en tu pantalla de inicio",
+    "Varios widgets, una palabra distinta en cada uno",
+    "Cada hora, cada día, cada semana… o con un toque",
+    "Inglés, turco, francés y español, como quieras combinarlos",
+    "Ponte a prueba con las palabras que ya has visto",
+    "Escala en el ranking mundial"
+  ]
+}
