@@ -16,7 +16,7 @@ offline-queue logic is in `Packages/VocabCore/Sources/VocabCore/Leaderboard/`.
 2. Click **+** → **iCloud Containers** → Description `Vocabi`, Identifier
    `iCloud.com.alpsenel.wordwidget` → Register.
    (Container IDs are permanent and cannot be deleted. Double-check the spelling.)
-3. Open the App ID **com.alpsenel.wordwidget** (team `UTZLUFML6U`):
+3. Open the App ID **com.alpsenel.wordwidget** (team `6S7Q8F967Q`):
    - Enable **iCloud** → choose *Include CloudKit support* → **Edit** → tick
      `iCloud.com.alpsenel.wordwidget` → Save.
    - **App Groups** must already include `group.com.alpsenel.wordwidget` (it is used by the widget).

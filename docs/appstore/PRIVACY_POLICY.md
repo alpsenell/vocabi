@@ -40,4 +40,4 @@ iCloud storage is provided by Apple and covered by [Apple's Privacy Policy](http
 If this policy changes, we will update the date above and describe the change in the app's release notes.
 
 ## Contact
-Questions or deletion requests: **support@EXAMPLE.com** _(placeholder: replace before submission)_
+Questions or deletion requests: **alpsenel@outlook.com**

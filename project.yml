@@ -8,7 +8,7 @@ options:
   generateEmptyDirectories: true
 settings:
   base:
-    DEVELOPMENT_TEAM: UTZLUFML6U
+    DEVELOPMENT_TEAM: 6S7Q8F967Q
     CODE_SIGN_STYLE: Automatic
     SWIFT_VERSION: "5.10"
     SWIFT_STRICT_CONCURRENCY: minimal

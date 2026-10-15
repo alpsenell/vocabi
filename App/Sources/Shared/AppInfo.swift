@@ -1,8 +1,7 @@
 import Foundation
 
 enum AppInfo {
-    /// Placeholder until the hosted privacy policy is published.
-    static let privacyPolicyURL = URL(string: "https://alpsenel.github.io/vocabi/privacy")!
+    static let privacyPolicyURL = URL(string: "https://alpsenell.github.io/vocabi/privacy")!
 
     static var versionString: String {
         let info = Bundle.main.infoDictionary

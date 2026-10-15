@@ -1,0 +1,21 @@
+DEFINE SCHEMA
+
+    RECORD TYPE PeriodScore (
+        "___createTime"   TIMESTAMP,
+        "___createdBy"    REFERENCE,
+        "___etag"         STRING,
+        "___modTime"      TIMESTAMP,
+        "___modifiedBy"   REFERENCE,
+        "___recordID"     REFERENCE QUERYABLE,
+        nickname          STRING,
+        period            STRING QUERYABLE,
+        periodKey         STRING QUERYABLE,
+        playerId          STRING QUERYABLE,
+        recentResultIds   LIST<STRING>,
+        targetLanguage    STRING QUERYABLE,
+        total             INT64 QUERYABLE SORTABLE,
+        updatedAt         TIMESTAMP,
+        GRANT WRITE TO "_creator",
+        GRANT CREATE TO "_icloud",
+        GRANT READ TO "_world"
+    );

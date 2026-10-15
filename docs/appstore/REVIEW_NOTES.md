@@ -27,10 +27,12 @@ Open the **Quiz** tab and tap **Start quiz**. The quiz has 10 multiple-choice qu
 **6. Global leaderboard (needs iCloud)**
 The leaderboard uses the CloudKit **public database**. To post a score, the device must be **signed in to iCloud**. The nickname (3–20 characters) is set in the app. When a quiz ends, the score is posted, and you can see it in the **Leaderboard** tab (Daily / Weekly / Monthly). If the device isn't signed in to iCloud, the app shows an **iCloud required** message, and the widgets and quiz keep working.
 
+**User-generated content (nicknames):** nicknames are the only user-generated content. They are trimmed to 3–20 characters, filtered against a profanity list before they can be saved, and every leaderboard row has a **Report nickname** action. Reported and offending entries are removed by the developer from the CloudKit Dashboard. _(Paste this paragraph only once the profanity filter + Report action are shipped — see docs/ENGINEERING_TODO.md.)_
+
 **Privacy:** no ads, no tracking, no third-party SDKs. The only data stored off the device is the nickname and quiz scores that the user chooses to post (iCloud public database).
 
 Deep links used by the widget: `vocabi://word/<id>`, `vocabi://quiz`.
 
 ---
 
-Contact: support@EXAMPLE.com _(placeholder)_
+Contact: alpsenel@outlook.com
