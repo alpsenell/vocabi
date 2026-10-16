@@ -76,6 +76,7 @@ schemes:
         WidgetAppWidget: all
     run:
       config: Debug
+      storeKitConfiguration: App/Vocabi.storekit
     test:
       config: Debug
       targets:

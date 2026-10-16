@@ -1,0 +1,23 @@
+{
+  "name": "vocabi-packs",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Vocabi Pro AI word pack server (Cloudflare Worker)",
+  "scripts": {
+    "dev": "wrangler dev",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "deploy": "wrangler deploy"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.135.0"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20261016.1",
+    "@types/node": "^22.20.5",
+    "typescript": "~5.9",
+    "vitest": "^3.2.7",
+    "wrangler": "^4.151.1"
+  }
+}

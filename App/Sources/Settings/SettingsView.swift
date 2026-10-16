@@ -5,6 +5,8 @@ import VocabCore
 /// invalid ones show inline errors and are not saved until fixed.
 struct SettingsView: View {
     @Environment(AppModel.self) private var model
+    @EnvironmentObject private var store: StoreManager
+    @EnvironmentObject private var packSync: PackSyncService
     @State private var draft = UserSettings.default
     @State private var loaded = false
     @State private var confirmReset = false
@@ -12,6 +14,7 @@ struct SettingsView: View {
     var body: some View {
         NavigationStack {
             Form {
+                ProSettingsSection()
                 languagesSection
                 Section {
                     Picker(selection: $draft.frequency) {
@@ -38,7 +41,11 @@ struct SettingsView: View {
             }
             .navigationTitle("Settings")
             .confirmationDialog("Reset progress?", isPresented: $confirmReset, titleVisibility: .visible) {
-                Button("Reset progress", role: .destructive) { model.resetProgress() }
+                Button("Reset progress", role: .destructive) {
+                    packSync.removeAllPacks()
+                    model.resetProgress()
+                    packSync.sync(settings: model.settings, isEntitled: store.isPro)
+                }
                 Button("Cancel", role: .cancel) {}
             } message: {
                 Text("All seen words and quiz scores on this device will be deleted. This can't be undone.")

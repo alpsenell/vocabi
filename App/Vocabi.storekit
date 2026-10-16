@@ -1,0 +1,79 @@
+{
+  "identifier": "5A1C0000",
+  "nonRenewingSubscriptions": [],
+  "products": [],
+  "settings": {
+    "_applicationInternalID": "",
+    "_developerTeamID": "6S7Q8F967Q",
+    "_failTransactionsEnabled": false,
+    "_lastSynchronizedDate": 0,
+    "_locale": "en_US",
+    "_storefront": "USA",
+    "_storeKitErrors": []
+  },
+  "subscriptionGroups": [
+    {
+      "id": "5A1C0001",
+      "localizations": [],
+      "name": "Vocabi Pro",
+      "subscriptions": [
+        {
+          "adHocOffers": [],
+          "codeOffers": [],
+          "displayPrice": "9.99",
+          "familyShareable": false,
+          "groupNumber": 1,
+          "internalID": "5A1C0011",
+          "introductoryOffer": {
+            "internalID": "5A1C0012",
+            "numberOfPeriods": 1,
+            "paymentMode": "free",
+            "subscriptionPeriod": "P3D"
+          },
+          "localizations": [
+            {
+              "description": "AI word packs for your levels and topics, plus up to 5 custom topics.",
+              "displayName": "Vocabi Pro (Monthly)",
+              "locale": "en_US"
+            }
+          ],
+          "productID": "com.alpsenel.wordwidget.pro.monthly",
+          "recurringSubscriptionPeriod": "P1M",
+          "referenceName": "Vocabi Pro Monthly",
+          "subscriptionGroupID": "5A1C0001",
+          "type": "RecurringSubscription"
+        },
+        {
+          "adHocOffers": [],
+          "codeOffers": [],
+          "displayPrice": "2.99",
+          "familyShareable": false,
+          "groupNumber": 1,
+          "internalID": "5A1C0021",
+          "introductoryOffer": {
+            "internalID": "5A1C0022",
+            "numberOfPeriods": 1,
+            "paymentMode": "free",
+            "subscriptionPeriod": "P3D"
+          },
+          "localizations": [
+            {
+              "description": "AI word packs for your levels and topics, plus up to 5 custom topics.",
+              "displayName": "Vocabi Pro (Weekly)",
+              "locale": "en_US"
+            }
+          ],
+          "productID": "com.alpsenel.wordwidget.pro.weekly",
+          "recurringSubscriptionPeriod": "P1W",
+          "referenceName": "Vocabi Pro Weekly",
+          "subscriptionGroupID": "5A1C0001",
+          "type": "RecurringSubscription"
+        }
+      ]
+    }
+  ],
+  "version": {
+    "major": 3,
+    "minor": 0
+  }
+}

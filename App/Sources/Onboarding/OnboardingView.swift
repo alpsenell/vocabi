@@ -10,8 +10,19 @@ struct OnboardingView: View {
     @Environment(AppModel.self) private var model
     @State private var step: Step = .welcome
     @State private var draft = UserSettings.default
+    /// `.freemium`: after the nickname step, a skippable "Try Vocabi Pro" screen.
+    @State private var showTryPro = false
 
     var body: some View {
+        if showTryPro {
+            TryProView { model.completeOnboarding(with: draft) }
+                .transition(.move(edge: .trailing).combined(with: .opacity))
+        } else {
+            steps
+        }
+    }
+
+    private var steps: some View {
         VStack(spacing: 0) {
             if step != .welcome {
                 header
@@ -66,7 +77,10 @@ struct OnboardingView: View {
         Button {
             if let next = Step(rawValue: step.rawValue + 1) {
                 go(to: next)
+            } else if ProGate.policy == .freemium {
+                withAnimation(.snappy) { showTryPro = true }
             } else {
+                // `.hardPaywall`: RootView shows the paywall as soon as onboarding is complete.
                 model.completeOnboarding(with: draft)
             }
         } label: {

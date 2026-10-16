@@ -41,7 +41,10 @@ private struct RecentWordRow: View {
                 .frame(width: 28, height: 28)
                 .background(Color.accentColor.opacity(0.12), in: RoundedRectangle(cornerRadius: 8, style: .continuous))
             VStack(alignment: .leading, spacing: 2) {
-                Text(card.word).font(.body.weight(.semibold))
+                HStack(spacing: 6) {
+                    Text(card.word).font(.body.weight(.semibold))
+                    if card.entry.isAIGenerated { AIBadge() }
+                }
                 Text(card.translation).font(.subheadline).foregroundStyle(.secondary)
             }
             Spacer()

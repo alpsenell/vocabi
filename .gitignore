@@ -10,3 +10,6 @@ build/
 *.ipa
 *.dSYM.zip
 .DS_Store
+
+# Logs
+*.log

@@ -113,3 +113,38 @@ Option (a) is safer for approval. If chosen, note it as an engineering task to p
 - The native-speaker corrections list.
 - The decision on nickname moderation.
 - Links to screenshots uploaded or the folder of composed images.
+
+---
+
+# Addendum (2026-10-16): Vocabi Pro subscriptions and the AI pack server
+
+Two features were added after the first handoff. Prices, product IDs and the cost model are in `docs/PRICING.md`; the server is in `server/` with its own README.
+
+## Step 9 — Deploy the pack server (Cloudflare Workers)
+
+1. Create a Cloudflare account if needed. Install wrangler: `npm i -g wrangler`, then `wrangler login`.
+2. In the repo: `cd server && npm install`.
+3. `wrangler kv namespace create PACKS` and paste the returned id into `server/wrangler.toml` (replace `REPLACE_WITH_KV_NAMESPACE_ID`).
+4. Secrets: `wrangler secret put ANTHROPIC_API_KEY` (create a key at console.anthropic.com) and `wrangler secret put DEV_BYPASS_TOKEN` (any long random string, used only by simulator builds).
+5. `npm run deploy`. Note the deployed URL. If it is not `https://vocabi-packs.alpsenel.workers.dev`, report it so engineering can update the default in `App/Sources/Shared/AppInfo.swift`.
+6. Smoke test: `curl https://<url>/v1/health` and one pack request with the dev token (examples in `server/README.md`). The first request for a standard pack takes 30–90 s; repeat it to confirm `X-Vocabi-Cache: hit`.
+7. Upgrade to the Workers Paid plan ($5/month) so generation requests are not cut off by the free CPU limit.
+8. The daily cron pre-generates 40 standard packs per run; the full catalogue of 504 packs takes about 13 days. The README explains how to run it faster for launch.
+
+## Step 10 — App Store Connect subscriptions
+
+1. Agreements, Tax, and Banking: accept the Paid Apps agreement and complete banking and tax forms. Consider enrolling in the App Store Small Business Program (15% commission).
+2. My Apps → Vocabi → Subscriptions → create subscription group **"Vocabi Pro"**. Add two auto-renewable subscriptions at the same service level:
+   - `com.alpsenel.wordwidget.pro.monthly`, duration 1 month, price $9.99 (pick the matching price tier so other territories round naturally).
+   - `com.alpsenel.wordwidget.pro.weekly`, duration 1 week, price $2.99.
+3. On each product add an Introductory Offer: Free trial, 3 days, all territories, new subscribers.
+4. Add localized display names and descriptions in en, tr, fr-FR, es-ES, and a review screenshot of the paywall (launch the app with `-VocabiPaywall` to show it).
+5. In the app's App Store description, add the subscription disclosure paragraph and the Terms of Use link (Apple standard EULA: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/). The privacy policy must now also mention the pack server (receives language pair, level, topic, an anonymous install id and the signed subscription receipt; no personal data).
+6. App Privacy questionnaire: add "Purchases" (subscription status, app functionality) and "Identifiers" (anonymous install id, app functionality, not linked to identity).
+7. Sandbox testing: create a Sandbox Apple ID under Users and Access, sign in on a test device, run a TestFlight build, and verify: paywall shows real prices, trial starts, Settings shows "Pro", AI packs download, cancellation returns the app to Free.
+
+## Deliverables to send back (addendum)
+
+- The deployed worker URL and confirmation that the health and pack endpoints respond.
+- Confirmation that both subscriptions and intro offers are created and approved.
+- Any price tier Apple assigned that differs from $2.99 / $9.99.

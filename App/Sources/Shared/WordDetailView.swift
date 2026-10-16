@@ -28,6 +28,11 @@ struct WordDetailView: View {
                         TagView(text: card.entry.category.localizedName, systemImage: card.entry.category.symbolName)
                         TagView(text: card.entry.difficulty.localizedName, systemImage: card.entry.difficulty.symbolName,
                                 tint: card.entry.difficulty.tint)
+                        Spacer(minLength: 0)
+                        if card.entry.isAIGenerated { AIBadge() }
+                    }
+                    if let topic = card.entry.topic, !topic.isEmpty {
+                        TagView(text: topic.capitalized, systemImage: "tag.fill", tint: .purple)
                     }
                     Text(card.word)
                         .font(.system(.largeTitle, design: .rounded).bold())

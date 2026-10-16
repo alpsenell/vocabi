@@ -1,0 +1,25 @@
+name = "vocabi-packs"
+main = "src/index.ts"
+compatibility_date = "2026-10-01"
+compatibility_flags = ["nodejs_compat"]
+
+# KV namespace holding generated packs (key = pack id) and per-install rate-limit counters.
+# Create with `npx wrangler kv namespace create PACKS` and paste the printed id here.
+[[kv_namespaces]]
+binding = "PACKS"
+id = "REPLACE_WITH_KV_NAMESPACE_ID"
+
+# Daily pre-generation of the standard catalogue (03:17 UTC).
+[triggers]
+crons = ["17 3 * * *"]
+
+[vars]
+VERIFY_PACKS = "true"
+APPLE_BUNDLE_ID = "com.alpsenel.wordwidget"
+
+# Secrets (never commit these; set with `npx wrangler secret put <NAME>`):
+#   ANTHROPIC_API_KEY  - Claude API key
+#   DEV_BYPASS_TOKEN   - optional; enables `Authorization: Bearer dev:<token>` for simulator builds
+
+[observability]
+enabled = true

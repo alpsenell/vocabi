@@ -59,6 +59,7 @@ final class AppModel {
     func resetProgress() {
         let kept = settings
         store.resetAll()
+        PackStore.shared.removeAll()
         store.settings = kept
         WidgetCenter.shared.reloadAllTimelines()
         refresh()

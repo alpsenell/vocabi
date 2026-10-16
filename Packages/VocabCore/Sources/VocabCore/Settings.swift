@@ -26,6 +26,10 @@ public struct UserSettings: Codable, Equatable, Sendable {
     public var categories: Set<Category>
     public var nickname: String
     public var hasCompletedOnboarding: Bool
+    /// User-typed topics for AI word packs (Pro feature), e.g. ["sailing", "job interviews"]. Max 5.
+    public var customTopics: [String]
+
+    public static let maxCustomTopics = 5
 
     public init(nativeLanguage: Language = .turkish,
                 targetLanguage: Language = .english,
@@ -33,7 +37,8 @@ public struct UserSettings: Codable, Equatable, Sendable {
                 difficulties: Set<Difficulty> = [.beginner, .intermediate],
                 categories: Set<Category> = Set(Category.allCases),
                 nickname: String = "",
-                hasCompletedOnboarding: Bool = false) {
+                hasCompletedOnboarding: Bool = false,
+                customTopics: [String] = []) {
         self.nativeLanguage = nativeLanguage
         self.targetLanguage = targetLanguage
         self.frequency = frequency
@@ -41,6 +46,33 @@ public struct UserSettings: Codable, Equatable, Sendable {
         self.categories = categories
         self.nickname = nickname
         self.hasCompletedOnboarding = hasCompletedOnboarding
+        self.customTopics = customTopics
+    }
+
+    // Tolerant decoding so settings saved by older app versions keep working when fields are added.
+    private enum CodingKeys: String, CodingKey {
+        case nativeLanguage, targetLanguage, frequency, difficulties, categories, nickname, hasCompletedOnboarding, customTopics
+    }
+
+    public init(from decoder: Decoder) throws {
+        let c = try decoder.container(keyedBy: CodingKeys.self)
+        let d = UserSettings.default
+        nativeLanguage = try c.decodeIfPresent(Language.self, forKey: .nativeLanguage) ?? d.nativeLanguage
+        targetLanguage = try c.decodeIfPresent(Language.self, forKey: .targetLanguage) ?? d.targetLanguage
+        frequency = try c.decodeIfPresent(RefreshFrequency.self, forKey: .frequency) ?? d.frequency
+        difficulties = try c.decodeIfPresent(Set<Difficulty>.self, forKey: .difficulties) ?? d.difficulties
+        categories = try c.decodeIfPresent(Set<Category>.self, forKey: .categories) ?? d.categories
+        nickname = try c.decodeIfPresent(String.self, forKey: .nickname) ?? d.nickname
+        hasCompletedOnboarding = try c.decodeIfPresent(Bool.self, forKey: .hasCompletedOnboarding) ?? d.hasCompletedOnboarding
+        customTopics = try c.decodeIfPresent([String].self, forKey: .customTopics) ?? []
+    }
+
+    /// Normalized topic key used for pack ids and matching: trimmed, lowercased, single spaces.
+    public static func normalizeTopic(_ topic: String) -> String {
+        topic.trimmingCharacters(in: .whitespacesAndNewlines)
+            .lowercased()
+            .split(whereSeparator: { $0.isWhitespace })
+            .joined(separator: " ")
     }
 
     public static let `default` = UserSettings()

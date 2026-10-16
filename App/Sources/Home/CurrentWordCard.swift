@@ -13,6 +13,7 @@ struct CurrentWordCard: View {
                     HStack {
                         Label("Word of the moment", systemImage: "sparkles")
                             .font(.subheadline.weight(.semibold))
+                        if entry.isAIGenerated { AIBadge(onAccent: true) }
                         Spacer()
                         Text(model.settings.frequency.localizedName)
                             .font(.caption.weight(.medium))

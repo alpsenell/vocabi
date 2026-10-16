@@ -82,7 +82,7 @@ private struct SmallWordView: View {
             HStack(alignment: .center) {
                 CategoryGlyph(category: card.entry.category)
                 Spacer(minLength: 4)
-                LanguageBadge(language: card.targetLanguage)
+                LanguageBadge(language: card.targetLanguage, isAI: card.entry.isAIGenerated)
             }
             Spacer(minLength: 2)
             WordTitle(word: card.word, size: 30)
@@ -113,7 +113,7 @@ private struct MediumWordView: View {
                     .foregroundStyle(.secondary)
                     .textCase(.uppercase)
                 Spacer(minLength: 4)
-                LanguageBadge(language: card.targetLanguage)
+                LanguageBadge(language: card.targetLanguage, isAI: card.entry.isAIGenerated)
             }
             Spacer(minLength: 0)
             VStack(alignment: .leading, spacing: 2) {
@@ -150,7 +150,7 @@ private struct LargeWordView: View {
                     .foregroundStyle(.secondary)
                     .textCase(.uppercase)
                 Spacer(minLength: 4)
-                LanguageBadge(language: card.targetLanguage)
+                LanguageBadge(language: card.targetLanguage, isAI: card.entry.isAIGenerated)
             }
 
             VStack(alignment: .leading, spacing: 2) {
@@ -288,9 +288,17 @@ private struct WordTitle: View {
 /// Tiny flag + language code badge for the target language.
 private struct LanguageBadge: View {
     let language: Language
+    var isAI: Bool = false
 
     var body: some View {
         HStack(spacing: 3) {
+            if isAI {
+                // Marks words that came from a Vocabi Pro AI pack.
+                Image(systemName: "sparkles")
+                    .font(.system(size: 9, weight: .bold))
+                    .foregroundStyle(.secondary)
+                    .accessibilityLabel(Text("AI word"))
+            }
             Text(language.flag).font(.system(size: 10))
             Text(language.rawValue.uppercased())
                 .font(.system(size: 9, weight: .heavy, design: .rounded))

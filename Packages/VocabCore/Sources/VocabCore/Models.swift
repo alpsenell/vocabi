@@ -71,17 +71,24 @@ public struct VocabEntry: Codable, Identifiable, Hashable, Sendable {
     public let terms: [Language: String]
     public let definitions: [Language: String]
     public let examples: [Language: String]?
+    /// Free-text topic for AI-generated packs (e.g. "sailing"). `nil` for the bundled seed and for
+    /// AI packs that target a standard `Category`.
+    public let topic: String?
 
     public init(id: String, category: Category, difficulty: Difficulty,
                 terms: [Language: String], definitions: [Language: String],
-                examples: [Language: String]? = nil) {
+                examples: [Language: String]? = nil, topic: String? = nil) {
         self.id = id
         self.category = category
         self.difficulty = difficulty
         self.terms = terms
         self.definitions = definitions
         self.examples = examples
+        self.topic = topic
     }
+
+    /// True for entries that came from an AI word pack rather than the bundled seed.
+    public var isAIGenerated: Bool { id.hasPrefix("ai-") }
 
     public func term(in language: Language) -> String { terms[language] ?? terms[.english] ?? id }
     public func definition(in language: Language) -> String { definitions[language] ?? definitions[.english] ?? "" }
@@ -89,7 +96,7 @@ public struct VocabEntry: Codable, Identifiable, Hashable, Sendable {
 
     // MARK: Codable with string-keyed dictionaries ("en": "...").
 
-    private enum CodingKeys: String, CodingKey { case id, category, difficulty, terms, definitions, examples }
+    private enum CodingKeys: String, CodingKey { case id, category, difficulty, terms, definitions, examples, topic }
 
     public init(from decoder: Decoder) throws {
         let c = try decoder.container(keyedBy: CodingKeys.self)
@@ -99,6 +106,7 @@ public struct VocabEntry: Codable, Identifiable, Hashable, Sendable {
         terms = Self.languageMap(try c.decode([String: String].self, forKey: .terms))
         definitions = Self.languageMap(try c.decode([String: String].self, forKey: .definitions))
         examples = try c.decodeIfPresent([String: String].self, forKey: .examples).map(Self.languageMap)
+        topic = try c.decodeIfPresent(String.self, forKey: .topic)
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -109,6 +117,7 @@ public struct VocabEntry: Codable, Identifiable, Hashable, Sendable {
         try c.encode(Self.stringMap(terms), forKey: .terms)
         try c.encode(Self.stringMap(definitions), forKey: .definitions)
         try c.encodeIfPresent(examples.map(Self.stringMap), forKey: .examples)
+        try c.encodeIfPresent(topic, forKey: .topic)
     }
 
     private static func languageMap(_ raw: [String: String]) -> [Language: String] {
