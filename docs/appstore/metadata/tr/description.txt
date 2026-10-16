@@ -25,8 +25,18 @@ KENDİNİ SINA, SONRA YARIŞ
 • Her turda 10 çoktan seçmeli soru. Hızlı cevap verene ek puan.
 • Puanını dünya sıralamasına gönder; bugün, bu hafta ve bu ay kaçıncı olduğunu gör.
 
+VOCABI PRO İLE DAHA FAZLASI (İSTEĞE BAĞLI)
+• Yapay zekâ kelime paketleri: seviyene ve konularına göre sürekli yenilenen taze kelimeler.
+• Kendi yazdığın özel konular ("yelken", "iş görüşmesi"), en fazla 5 tane.
+• Sınırsız kelime. Ücretsiz sürümdeki her şey ücretsiz kalır.
+
 GİZLİLİĞİNE SAYGILI
 • Reklam yok, takip yok.
 • Sıralamada yalnızca seçtiğin takma ad görünür. Puanlar Apple'ın iCloud'unda saklanır.
+• Pro kelime paketleri sunucumuzdan hiçbir kişisel veri gönderilmeden alınır.
 
 İlk widget'ını ekle, ana ekranında öğrenmeye başla.
+
+Vocabi Pro otomatik yenilenen bir aboneliktir: haftalık 2,99 $ veya aylık 9,99 $ (fiyatlar ülkeye göre değişebilir); yeni aboneler için 3 günlük ücretsiz deneme içerir. Ödeme, satın alma onayında Apple Hesabından tahsil edilir. Abonelik, mevcut dönemin bitiminden en az 24 saat önce iptal edilmediği sürece otomatik olarak yenilenir ve yenileme ücreti dönem bitiminden önceki 24 saat içinde hesabından alınır. Aboneliğini istediğin zaman Apple Hesabı ayarlarından yönetebilir veya iptal edebilirsin. Abonelik satın alındığında ücretsiz denemenin kullanılmayan kısmı geçersiz olur.
+Gizlilik politikası: https://alpsenell.github.io/vocabi/privacy
+Kullanım Koşulları: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/

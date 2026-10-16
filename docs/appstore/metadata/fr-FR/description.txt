@@ -25,8 +25,18 @@ TESTEZ-VOUS, PUIS AFFRONTEZ LES AUTRES
 • 10 questions à choix multiples par partie, avec un bonus pour les réponses rapides.
 • Publiez votre score au classement mondial et voyez votre rang du jour, de la semaine et du mois.
 
+ALLEZ PLUS LOIN AVEC VOCABI PRO (FACULTATIF)
+• Packs de mots IA : des mots nouveaux pour votre niveau et vos thèmes, renouvelés en continu.
+• Sujets personnalisés que vous saisissez vous-même (« voile », « entretien d'embauche »), jusqu'à 5.
+• Vocabulaire illimité. Tout ce qui est gratuit le reste.
+
 RESPECT DE LA VIE PRIVÉE
 • Ni publicité, ni pistage.
 • Le classement n'affiche que le pseudo que vous choisissez. Les scores sont stockés dans iCloud d'Apple.
+• Les packs de mots Pro sont demandés à notre serveur sans aucune donnée personnelle.
 
 Ajoutez votre premier widget et apprenez directement sur votre écran d'accueil.
+
+Vocabi Pro est un abonnement à renouvellement automatique : 2,99 $ par semaine ou 9,99 $ par mois (les prix peuvent varier selon le pays), avec un essai gratuit de 3 jours pour les nouveaux abonnés. Le paiement est débité de votre compte Apple à la confirmation de l'achat. L'abonnement se renouvelle automatiquement sauf s'il est annulé au moins 24 heures avant la fin de la période en cours ; le renouvellement est facturé dans les 24 heures précédant la fin de la période. Vous pouvez gérer ou annuler votre abonnement à tout moment dans les réglages de votre compte Apple. Toute partie non utilisée de l'essai gratuit est perdue lors de l'achat d'un abonnement.
+Politique de confidentialité : https://alpsenell.github.io/vocabi/privacy
+Conditions d'utilisation : https://www.apple.com/legal/internet-services/itunes/dev/stdeula/

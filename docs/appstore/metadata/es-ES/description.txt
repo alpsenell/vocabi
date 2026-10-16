@@ -25,8 +25,18 @@ PONTE A PRUEBA Y COMPITE
 • 10 preguntas de opción múltiple por partida. Si respondes rápido, ganas puntos extra.
 • Publica tu puntuación en el ranking mundial y descubre tu puesto del día, de la semana y del mes.
 
+VE MÁS ALLÁ CON VOCABI PRO (OPCIONAL)
+• Packs de palabras con IA: palabras nuevas para tu nivel y tus temas, renovadas continuamente.
+• Temas personalizados que escribes tú («vela», «entrevistas de trabajo»), hasta 5.
+• Vocabulario ilimitado. Todo lo gratuito sigue siendo gratuito.
+
 TU PRIVACIDAD, PRIMERO
 • Sin anuncios y sin rastreo.
 • En el ranking solo aparece el apodo que elijas. Las puntuaciones se guardan en iCloud de Apple.
+• Los packs de palabras Pro se piden a nuestro servidor sin ningún dato personal.
 
 Añade tu primer widget y empieza a aprender desde tu pantalla de inicio.
+
+Vocabi Pro es una suscripción con renovación automática: 2,99 $ a la semana o 9,99 $ al mes (los precios pueden variar según el país), con una prueba gratuita de 3 días para nuevos suscriptores. El pago se carga en tu cuenta de Apple al confirmar la compra. La suscripción se renueva automáticamente salvo que se cancele al menos 24 horas antes del final del periodo en curso; la renovación se cobra en las 24 horas previas al final del periodo. Puedes gestionar o cancelar la suscripción en cualquier momento desde los ajustes de tu cuenta de Apple. Al comprar una suscripción se pierde la parte no utilizada de la prueba gratuita.
+Política de privacidad: https://alpsenell.github.io/vocabi/privacy
+Condiciones de uso: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/

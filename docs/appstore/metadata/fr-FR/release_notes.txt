@@ -7,5 +7,6 @@ Bienvenue dans Vocabi 1.0 !
 • Choix du niveau et des thèmes
 • Quiz express de 10 questions sur les mots déjà vus
 • Classements mondiaux du jour, de la semaine et du mois
+• Vocabi Pro en option : packs de mots IA et sujets personnalisés, avec 3 jours d'essai gratuit
 
 Merci d'essayer Vocabi, vos retours nous intéressent !

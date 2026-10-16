@@ -7,5 +7,6 @@ Vocabi 1.0'a hoş geldin!
 • Seviye ve konu seçimi
 • Gördüğün kelimelerden oluşan 10 soruluk hızlı test
 • Günlük, haftalık ve aylık dünya sıralaması
+• İsteğe bağlı Vocabi Pro: yapay zekâ kelime paketleri ve özel konular, 3 günlük ücretsiz deneme ile
 
 Vocabi'yi denediğin için teşekkürler, görüşlerini bekliyoruz!

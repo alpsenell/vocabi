@@ -1,8 +1,8 @@
 # Vocabi Privacy Policy
 
-_Last updated: 15 October 2026_
+_Last updated: 17 October 2026_
 
-Vocabi ("the app") is made by an independent developer ("we"). This policy explains what the app stores, where it is stored and why. In short, **no ads, no tracking, no analytics, and no account beyond the nickname you choose.**
+Vocabi ("the app") is made by an independent developer ("we"). This policy explains what the app stores, where it is stored and why. In short, **no ads, no tracking, no analytics, and no account beyond the nickname you choose.** The optional Vocabi Pro subscription adds AI word packs that are fetched from our server without any personal data.
 
 ## What stays on your device
 Your language pair, levels, topics, refresh frequency, widget slots, the words you have seen and your quiz history are stored **only on your device**, in an App Group container that the app and its widgets share. This data is never sent to us.
@@ -20,6 +20,19 @@ Other Vocabi users can see leaderboard entries. Please don't use your real name 
 
 The leaderboard needs you to be signed in to iCloud. If you never post a score, nothing leaves your device.
 
+## Vocabi Pro word packs (subscribers only)
+If you subscribe to Vocabi Pro, the app downloads AI-generated word packs from our pack server (hosted on Cloudflare). Each request contains only what is needed to build and authorise the pack:
+
+| Data sent | Purpose |
+|---|---|
+| Your language pair, level and topic or category | Selects or generates the right pack |
+| An anonymous install identifier (a random UUID created by the app) | Applies the per-install limit on custom topics; it is not linked to your Apple Account or to the leaderboard |
+| Your App Store subscription receipt, signed by Apple | Confirms that Vocabi Pro is active; it contains no name, email or payment details |
+
+No name, email address, device identifier, location or usage history is sent. The server keeps the anonymous install identifier only for rate limiting (about 7 days) and caches generated packs so they can be shared with other subscribers; packs contain no user data. Word packs are generated with the Claude API by Anthropic; only the language pair, level and topic are shared with it. Downloaded packs are stored on your device. Purchases themselves are handled entirely by Apple under [Apple's Privacy Policy](https://www.apple.com/legal/privacy/).
+
+If you never subscribe, the app never contacts the pack server.
+
 ## What we don't do
 - No advertising and no advertising identifiers.
 - No tracking across apps or websites (App Tracking Transparency is never requested).
@@ -27,14 +40,14 @@ The leaderboard needs you to be signed in to iCloud. If you never post a score, 
 - We don't sell or share data with third parties.
 
 ## Data retention and deletion
-- Deleting the app removes all on-device data.
+- Deleting the app removes all on-device data, including downloaded word packs and the anonymous install identifier.
 - To remove your leaderboard entries, email us at the address below with your nickname and we will delete them. Leaderboard periods (daily/weekly/monthly) roll over automatically, and old entries may be removed periodically.
 
 ## Children
 Vocabi is suitable for all ages and does not knowingly collect personal information from children. The only data that is shared is the nickname and score described above.
 
 ## Apple
-iCloud storage is provided by Apple and covered by [Apple's Privacy Policy](https://www.apple.com/legal/privacy/).
+iCloud storage and in-app purchases are provided by Apple and covered by [Apple's Privacy Policy](https://www.apple.com/legal/privacy/). Subscriptions are governed by Apple's [Licensed Application End User License Agreement](https://www.apple.com/legal/internet-services/itunes/dev/stdeula/).
 
 ## Changes
 If this policy changes, we will update the date above and describe the change in the app's release notes.

@@ -7,5 +7,6 @@ Welcome to Vocabi 1.0!
 • Pick your level and topics
 • Quick 10-question quiz built from the words you've seen
 • Daily, weekly and monthly global leaderboards
+• Optional Vocabi Pro: AI word packs and custom topics, with a 3-day free trial
 
 Thanks for trying Vocabi! We'd love to hear what you think.

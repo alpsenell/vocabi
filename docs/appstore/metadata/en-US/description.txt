@@ -25,8 +25,18 @@ QUIZ YOURSELF, THEN COMPETE
 • Ten multiple-choice questions per round. Answer fast for bonus points.
 • Post your score to the global leaderboard and see how you rank today, this week and this month.
 
+GO FURTHER WITH VOCABI PRO (OPTIONAL)
+• AI word packs: fresh words for your level and topics, refreshed continuously.
+• Custom topics you type yourself ("sailing", "job interviews"), up to 5.
+• Unlimited vocabulary. Everything in the free version stays free.
+
 PRIVATE BY DESIGN
 • No ads and no tracking.
 • The leaderboard only shows the nickname you choose. Scores are stored in Apple's iCloud.
+• Pro word packs are requested from our server without any personal data.
 
 Add your first widget and start learning on your home screen.
+
+Vocabi Pro is an auto-renewable subscription: $2.99 per week or $9.99 per month (prices may vary by country), each with a 3-day free trial for new subscribers. Payment is charged to your Apple Account at confirmation of purchase. The subscription renews automatically unless cancelled at least 24 hours before the end of the current period, and your account is charged for renewal within 24 hours before the end of the period. You can manage or cancel your subscription in your Apple Account settings at any time. Any unused portion of a free trial is forfeited when you purchase a subscription.
+Privacy policy: https://alpsenell.github.io/vocabi/privacy
+Terms of Use: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/

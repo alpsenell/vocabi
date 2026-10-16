@@ -27,9 +27,12 @@ Open the **Quiz** tab and tap **Start quiz**. The quiz has 10 multiple-choice qu
 **6. Global leaderboard (needs iCloud)**
 The leaderboard uses the CloudKit **public database**. To post a score, the device must be **signed in to iCloud**. The nickname (3–20 characters) is set in the app. When a quiz ends, the score is posted, and you can see it in the **Leaderboard** tab (Daily / Weekly / Monthly). If the device isn't signed in to iCloud, the app shows an **iCloud required** message, and the widgets and quiz keep working.
 
-**User-generated content (nicknames):** nicknames are the only user-generated content. They are trimmed to 3–20 characters, filtered against a profanity list before they can be saved, and every leaderboard row has a **Report nickname** action. Reported and offending entries are removed by the developer from the CloudKit Dashboard. _(Paste this paragraph only once the profanity filter + Report action are shipped — see docs/ENGINEERING_TODO.md.)_
+**User-generated content (nicknames):** nicknames are the only user-generated content. They are trimmed to 3–20 characters, filtered against a profanity list before they can be saved, and every leaderboard row has a **Report nickname** action. Reported and offending entries are removed by the developer from the CloudKit Dashboard.
 
-**Privacy:** no ads, no tracking, no third-party SDKs. The only data stored off the device is the nickname and quiz scores that the user chooses to post (iCloud public database).
+**7. Vocabi Pro (optional auto-renewable subscription)**
+Settings → **Vocabi Pro** section → **Upgrade to Pro** (or the locked **Custom topics** row) opens the paywall with two options: weekly and monthly, each with a 3-day free trial. Prices load from StoreKit, so in review they show sandbox prices. To test: start the trial with a Sandbox Apple ID; Settings then shows **Pro**, the AI word packs download (the first pack can take up to 60 seconds to generate), and custom topics can be added. Restore purchases is on the paywall. Free features never require a purchase. The subscription terms, privacy policy link and Terms of Use (Apple's standard EULA) are shown on the paywall and in the App Store description.
+
+**Privacy:** no ads, no tracking, no third-party SDKs. The only data stored off the device is the nickname and quiz scores that the user chooses to post (iCloud public database). Pro word-pack requests send only the language pair, level, topic, an anonymous install id and the Apple-signed subscription receipt to our server.
 
 Deep links used by the widget: `vocabi://word/<id>`, `vocabi://quiz`.
 
