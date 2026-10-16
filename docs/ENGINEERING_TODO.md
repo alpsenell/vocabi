@@ -4,10 +4,11 @@
 
 Decision (15 Oct 2026): ship a profanity filter plus a "Report nickname" action rather than relying on review-notes wording alone.
 
-- [ ] Add a profanity word list (en, tr, fr, es) to `VocabCore`, e.g. `Packages/VocabCore/Sources/VocabCore/Resources/blocked-nicknames.txt`.
-- [ ] In `App/Sources/Shared/Nickname.swift`, reject a nickname when, after lower-casing and stripping diacritics/digits-for-letters (0→o, 1→i, 3→e, 4→a, 5→s), it contains a blocked term. Show the existing validation error state.
-- [ ] Leaderboard rows: add a context-menu / swipe action **Report nickname**. On tap, save a `NicknameReport` record to the CloudKit public database: `reportedRecordName` (String), `reportedNickname` (String), `reporterId` (String), `createdAt` (Date). Add the record type to `docs/cloudkit-schema.ckdb`, import it to Development and deploy to Production again.
-- [ ] Optionally hide the reported row locally for the reporter (persist reported record names in the App Group).
+- [x] Add a profanity word list (en, tr, fr, es) to `VocabCore`, e.g. `Packages/VocabCore/Sources/VocabCore/Resources/blocked-nicknames.txt`.
+- [x] In `App/Sources/Shared/Nickname.swift`, reject a nickname when, after lower-casing and stripping diacritics/digits-for-letters (0→o, 1→i, 3→e, 4→a, 5→s), it contains a blocked term. Show the existing validation error state.
+- [x] Leaderboard rows: add a context-menu / swipe action **Report nickname**. On tap, save a `NicknameReport` record to the CloudKit public database: `reportedRecordName` (String), `reportedNickname` (String), `reporterId` (String), `createdAt` (Date). Add the record type to `docs/cloudkit-schema.ckdb`, import it to Development and deploy to Production again.
+  - [ ] **Owner:** import `docs/cloudkit-schema.ckdb` to Development (or create `NicknameReport` by hand per `docs/CLOUDKIT_SETUP.md`), add the indexes, then deploy to Production.
+- [x] Optionally hide the reported row locally for the reporter (persist reported record names in the App Group).
 - [ ] Once shipped, paste the UGC paragraph from `docs/appstore/REVIEW_NOTES.md` into App Store Connect → App Review Information → Notes.
 
 ## 2. Signing team

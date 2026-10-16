@@ -4580,6 +4580,160 @@
           }
         }
       }
+    },
+    "Please choose a different nickname." : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elige otro apodo, por favor."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Veuillez choisir un autre pseudo."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lütfen farklı bir takma ad seç."
+          }
+        }
+      }
+    },
+    "Report nickname" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Denunciar apodo"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Signaler le pseudo"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Takma adı bildir"
+          }
+        }
+      }
+    },
+    "Report “%@”?" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Denunciar «%@»?"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Signaler « %@ » ?"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“%@” bildirilsin mi?"
+          }
+        }
+      }
+    },
+    "This nickname will be hidden for you and sent to us for review." : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Este apodo se ocultará para ti y se nos enviará para su revisión."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ce pseudo sera masqué pour vous et nous sera envoyé pour vérification."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bu takma ad senin için gizlenecek ve incelenmek üzere bize gönderilecek."
+          }
+        }
+      }
+    },
+    "Thanks! The nickname was reported and hidden." : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¡Gracias! El apodo se ha denunciado y ocultado."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Merci ! Le pseudo a été signalé et masqué."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Teşekkürler! Takma ad bildirildi ve gizlendi."
+          }
+        }
+      }
+    },
+    "Nickname hidden. Sign in to iCloud to send reports." : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apodo oculto. Inicia sesión en iCloud para enviar denuncias."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pseudo masqué. Connectez-vous à iCloud pour envoyer des signalements."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Takma ad gizlendi. Bildirim göndermek için iCloud’a giriş yap."
+          }
+        }
+      }
+    },
+    "Nickname hidden. The report couldn't be sent." : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apodo oculto. No se pudo enviar la denuncia."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pseudo masqué. Le signalement n’a pas pu être envoyé."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Takma ad gizlendi. Bildirim gönderilemedi."
+          }
+        }
+      }
     }
   },
   "version" : "1.1"

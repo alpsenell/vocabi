@@ -143,18 +143,21 @@ struct OnboardingNicknameStep: View {
     }
 }
 
-/// Live hint for the 3–20 character rule.
+/// Live hint for the 3–20 character rule and the nickname filter.
 struct NicknameHint: View {
     let nickname: String
 
     var body: some View {
         let count = Nickname.clean(nickname).count
-        if count == 0 || Nickname.isValid(nickname) {
+        switch count == 0 ? nil : Nickname.problem(nickname) {
+        case nil:
             Text("3–20 characters (\(count)/20)")
                 .font(.footnote)
                 .foregroundStyle(.secondary)
-        } else {
+        case .length:
             ValidationMessage(text: "Nickname must be 3–20 characters.")
+        case .blocked:
+            ValidationMessage(text: "Please choose a different nickname.")
         }
     }
 }

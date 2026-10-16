@@ -107,13 +107,15 @@ public enum LeaderboardRanking {
     // MARK: Nicknames
 
     /// Trims whitespace/newlines, collapses control characters and limits length.
-    /// Falls back to "Player-XXXX" derived from the player id when empty.
+    /// Falls back to "Player-XXXX" derived from the player id when empty or blocked by
+    /// `NicknameModeration` (so old or tampered records never show profanity).
     public static func displayNickname(_ raw: String, playerId: String) -> String {
         let cleaned = raw
             .components(separatedBy: .controlCharacters).joined()
             .trimmingCharacters(in: .whitespacesAndNewlines)
-        if cleaned.isEmpty { return fallbackNickname(playerId: playerId) }
-        return String(cleaned.prefix(maxNicknameLength))
+        if cleaned.isEmpty || !NicknameModeration.isAllowed(cleaned) { return fallbackNickname(playerId: playerId) }
+        let trimmed = String(cleaned.prefix(maxNicknameLength))
+        return NicknameModeration.isAllowed(trimmed) ? trimmed : fallbackNickname(playerId: playerId)
     }
 
     public static func fallbackNickname(playerId: String) -> String {

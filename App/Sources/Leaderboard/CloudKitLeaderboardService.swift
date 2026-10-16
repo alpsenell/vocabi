@@ -8,7 +8,11 @@ import VocabCore
 /// recordName = "<playerId>|<period>|<periodKey>|<targetLanguage>"
 /// fields: playerId, nickname, period, periodKey, targetLanguage (String), total (Int64), updatedAt (Date),
 ///         recentResultIds (String list — last applied quiz ids, makes retries idempotent).
-final class CloudKitLeaderboardService: LeaderboardService, @unchecked Sendable {
+///
+/// Reports (record type `NicknameReport`): recordName = "<reporterId>|<reportedRecordName>" so repeated reports
+/// by the same player are deduplicated; fields reportedRecordName, reportedNickname, reporterId (String),
+/// createdAt (Date). Not world-readable — reviewed in the CloudKit Dashboard.
+final class CloudKitLeaderboardService: LeaderboardService, NicknameReportService, @unchecked Sendable {
     static let containerIdentifier = "iCloud.com.alpsenel.wordwidget"
     static let playerIdDefaultsKey = "leaderboard.playerId.v1"
 
@@ -22,6 +26,14 @@ final class CloudKitLeaderboardService: LeaderboardService, @unchecked Sendable 
         static let total = "total"
         static let updatedAt = "updatedAt"
         static let recentResultIds = "recentResultIds"
+    }
+
+    enum ReportField {
+        static let recordType = "NicknameReport"
+        static let reportedRecordName = "reportedRecordName"
+        static let reportedNickname = "reportedNickname"
+        static let reporterId = "reporterId"
+        static let createdAt = "createdAt"
     }
 
     private static let maxConflictRetries = 3
@@ -133,6 +145,25 @@ final class CloudKitLeaderboardService: LeaderboardService, @unchecked Sendable 
             let record = CKRecord(recordType: Field.recordType, recordID: id)
             initialize(record)
             return record
+        } catch {
+            throw Self.map(error)
+        }
+    }
+
+    // MARK: Report
+
+    func reportNickname(recordName: String, nickname: String) async throws {
+        let reporter = try await playerId()
+        let id = CKRecord.ID(recordName: String("\(reporter)|\(recordName)".prefix(255)))
+        let record = CKRecord(recordType: ReportField.recordType, recordID: id)
+        record[ReportField.reportedRecordName] = recordName as CKRecordValue
+        record[ReportField.reportedNickname] = String(nickname.prefix(LeaderboardRanking.maxNicknameLength * 2)) as CKRecordValue
+        record[ReportField.reporterId] = reporter as CKRecordValue
+        record[ReportField.createdAt] = now() as CKRecordValue
+        do {
+            _ = try await database.save(record)
+        } catch let error as CKError where error.code == .serverRecordChanged {
+            return // this player already reported that record
         } catch {
             throw Self.map(error)
         }

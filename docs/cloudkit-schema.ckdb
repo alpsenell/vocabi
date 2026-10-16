@@ -19,3 +19,19 @@ DEFINE SCHEMA
         GRANT CREATE TO "_icloud",
         GRANT READ TO "_world"
     );
+
+    RECORD TYPE NicknameReport (
+        "___createTime"     TIMESTAMP,
+        "___createdBy"      REFERENCE,
+        "___etag"           STRING,
+        "___modTime"        TIMESTAMP,
+        "___modifiedBy"     REFERENCE,
+        "___recordID"       REFERENCE QUERYABLE,
+        createdAt           TIMESTAMP QUERYABLE SORTABLE,
+        reportedNickname    STRING,
+        reportedRecordName  STRING QUERYABLE,
+        reporterId          STRING,
+        GRANT READ TO "_creator",
+        GRANT WRITE TO "_creator",
+        GRANT CREATE TO "_icloud"
+    );

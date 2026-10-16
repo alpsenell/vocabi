@@ -1,5 +1,7 @@
 # Vocabulary content review — first pass (15 Oct 2026)
 
+> **Status (16 Oct 2026): all proposals below, the level changes and the US-spelling pass were applied to `vocabulary.json`.** The tables are kept as the change log; a native speaker can still object to any row and it will be reverted by its id.
+
 First-pass review of the terms flagged in `docs/HANDOFF_COWORK.md` step 6. These are
 proposals for a native speaker to confirm, not final. Format: `id → field → new text`.
 Fields use the JSON paths in `Packages/VocabCore/Sources/VocabCore/Resources/vocabulary.json`.

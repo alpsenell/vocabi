@@ -9,9 +9,15 @@ import VocabCore
 enum LeaderboardBackend {
     static let defaults = UserDefaults(suiteName: SharedStore.appGroupID) ?? .standard
 
+    static let cloudKit = CloudKitLeaderboardService(defaults: defaults)
+
     /// CloudKit service wrapped in the offline queue (App Group key "leaderboard.pendingResults.v1").
-    static let shared = LeaderboardSyncCoordinator(service: CloudKitLeaderboardService(defaults: defaults),
+    static let shared = LeaderboardSyncCoordinator(service: cloudKit,
                                                    queue: PendingLeaderboardQueue(defaults: defaults))
+
+    /// "Report nickname": CloudKit `NicknameReport` records; reported rows are hidden locally
+    /// (App Group key "leaderboard.reportedRecords.v1").
+    static let reporter = NicknameReporter(service: cloudKit, store: ReportedNicknameStore(defaults: defaults))
 
     /// Posted on the main queue after queued results reached the server.
     static let didSubmitNotification = Notification.Name("LeaderboardBackend.didSubmit")
@@ -52,16 +58,31 @@ final class LeaderboardViewModel {
         case failed(LeaderboardError)
     }
 
+    /// Brief message shown after "Report nickname".
+    enum ReportConfirmation: Equatable {
+        case sent
+        case hiddenNotSignedIn
+        case hiddenNotSent
+    }
+
     var period: LeaderboardPeriod = .weekly
     private(set) var states: [LeaderboardPeriod: LoadState] = [:]
     private(set) var targetLanguage: Language = SharedStore.shared.settings.targetLanguage
     private(set) var pendingCount = 0
+    private(set) var reportConfirmation: ReportConfirmation?
 
     private let service: LeaderboardService
+    private let reporter: NicknameReporter
+    private let now: () -> Date
     private let pendingCounter: (@Sendable () async -> Int)?
+    private var confirmationTask: Task<Void, Never>?
 
-    init(service: LeaderboardService = LeaderboardBackend.shared) {
+    init(service: LeaderboardService = LeaderboardBackend.shared,
+         reporter: NicknameReporter = LeaderboardBackend.reporter,
+         now: @escaping () -> Date = { Date() }) {
         self.service = service
+        self.reporter = reporter
+        self.now = now
         if let coordinator = service as? LeaderboardSyncCoordinator {
             pendingCounter = { await coordinator.pendingCount }
         } else {
@@ -90,7 +111,7 @@ final class LeaderboardViewModel {
 
         do {
             let entries = try await service.fetch(period: period, targetLanguage: language)
-            states[period] = .loaded(entries)
+            states[period] = .loaded(reporter.filter(entries))
         } catch let error as LeaderboardError {
             states[period] = .failed(error)
         } catch {
@@ -100,12 +121,44 @@ final class LeaderboardViewModel {
     }
 
     func invalidateAll() { states.removeAll() }
+
+    // MARK: Reporting
+
+    /// Hides `entry` immediately (in every period), then sends a `NicknameReport`.
+    /// Without iCloud or network the row stays hidden locally and the message says so.
+    func report(_ entry: LeaderboardEntry) async {
+        guard !entry.isCurrentUser else { return }
+        let recordName = NicknameReporter.recordName(for: entry, period: period, date: now(),
+                                                     targetLanguage: targetLanguage)
+        for (key, state) in states {
+            if case .loaded(let entries) = state {
+                states[key] = .loaded(entries.filter { $0.id != entry.id })
+            }
+        }
+        let outcome = await reporter.report(recordName: recordName, nickname: entry.nickname)
+        switch outcome {
+        case .sent: showConfirmation(.sent)
+        case .hiddenOnly(.notSignedIn): showConfirmation(.hiddenNotSignedIn)
+        case .hiddenOnly: showConfirmation(.hiddenNotSent)
+        }
+    }
+
+    private func showConfirmation(_ confirmation: ReportConfirmation) {
+        confirmationTask?.cancel()
+        reportConfirmation = confirmation
+        confirmationTask = Task { [weak self] in
+            try? await Task.sleep(for: .seconds(3))
+            guard !Task.isCancelled else { return }
+            self?.reportConfirmation = nil
+        }
+    }
 }
 
 // MARK: - View
 
 struct LeaderboardView: View {
     @State private var model = LeaderboardViewModel()
+    @State private var pendingReport: LeaderboardEntry?
 
     var body: some View {
         NavigationStack {
@@ -126,7 +179,32 @@ struct LeaderboardView: View {
                 Task { await model.load(force: true) }
             }
             .animation(.default, value: model.state)
+            .confirmationDialog(reportTitle, isPresented: isReportDialogPresented, titleVisibility: .visible,
+                                presenting: pendingReport) { entry in
+                Button("Report nickname", role: .destructive) {
+                    Task { await model.report(entry) }
+                }
+                Button("Cancel", role: .cancel) {}
+            } message: { _ in
+                Text("This nickname will be hidden for you and sent to us for review.")
+            }
+            .overlay(alignment: .bottom) {
+                if let confirmation = model.reportConfirmation {
+                    ReportToast(confirmation: confirmation)
+                        .padding(.bottom, 12)
+                        .transition(.move(edge: .bottom).combined(with: .opacity))
+                }
+            }
+            .animation(.spring(duration: 0.35), value: model.reportConfirmation)
         }
+    }
+
+    private var reportTitle: Text {
+        Text("Report “\(pendingReport?.nickname ?? "")”?")
+    }
+
+    private var isReportDialogPresented: Binding<Bool> {
+        Binding(get: { pendingReport != nil }, set: { if !$0 { pendingReport = nil } })
     }
 
     // MARK: Header
@@ -209,8 +287,59 @@ struct LeaderboardView: View {
                 ForEach(entries) { entry in
                     LeaderboardRow(entry: entry)
                         .listRowBackground(entry.isCurrentUser ? Color.accentColor.opacity(0.15) : nil)
+                        .modifier(ReportActions(entry: entry) { pendingReport = $0 })
                 }
             }
+        }
+    }
+}
+
+// MARK: - Reporting
+
+/// Context menu + trailing swipe "Report nickname" on other players' rows.
+private struct ReportActions: ViewModifier {
+    let entry: LeaderboardEntry
+    let onReport: (LeaderboardEntry) -> Void
+
+    func body(content: Content) -> some View {
+        if entry.isCurrentUser {
+            content
+        } else {
+            content
+                .contextMenu {
+                    Button(role: .destructive) { onReport(entry) } label: {
+                        Label("Report nickname", systemImage: "exclamationmark.bubble")
+                    }
+                }
+                .swipeActions(edge: .trailing, allowsFullSwipe: false) {
+                    Button { onReport(entry) } label: {
+                        Label("Report nickname", systemImage: "exclamationmark.bubble")
+                    }
+                    .tint(.orange)
+                }
+        }
+    }
+}
+
+private struct ReportToast: View {
+    let confirmation: LeaderboardViewModel.ReportConfirmation
+
+    var body: some View {
+        Label(message, systemImage: confirmation == .sent ? "checkmark.circle.fill" : "eye.slash.fill")
+            .font(.subheadline.weight(.medium))
+            .padding(.horizontal, 16)
+            .padding(.vertical, 10)
+            .background(.regularMaterial, in: Capsule())
+            .shadow(color: .black.opacity(0.12), radius: 8, y: 2)
+            .padding(.horizontal, 16)
+            .accessibilityAddTraits(.isStaticText)
+    }
+
+    private var message: LocalizedStringKey {
+        switch confirmation {
+        case .sent: return "Thanks! The nickname was reported and hidden."
+        case .hiddenNotSignedIn: return "Nickname hidden. Sign in to iCloud to send reports."
+        case .hiddenNotSent: return "Nickname hidden. The report couldn't be sent."
         }
     }
 }

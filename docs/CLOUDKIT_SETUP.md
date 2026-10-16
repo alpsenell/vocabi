@@ -84,12 +84,44 @@ Schema → **Security Roles**. Default public-database permissions are fine:
 Keep `_icloud` **without Write**: only the creator of a record can modify it, so players cannot
 change each other's totals.
 
+### Record type `NicknameReport` (Report nickname)
+
+Saved when a player long-presses / swipes a leaderboard row and taps **Report nickname**
+(`CloudKitLeaderboardService.reportNickname`). The record name is `<reporterId>|<reportedRecordName>`,
+so one player reporting the same row twice creates only one record.
+
+| Field                | Type      | Notes |
+|----------------------|-----------|-------|
+| `reportedRecordName` | String    | `PeriodScore` record name of the reported row (`<playerId>\|<period>\|<periodKey>\|<lang>`) |
+| `reportedNickname`   | String    | nickname as it was displayed |
+| `reporterId`         | String    | iCloud user record name of the reporter |
+| `createdAt`          | Date/Time | when the report was made |
+
+Indexes (Schema → Indexes → `NicknameReport`): `recordName` QUERYABLE, `reportedRecordName` QUERYABLE,
+`createdAt` QUERYABLE and `createdAt` SORTABLE (newest first in the Dashboard).
+
+Security roles: **no world read** — reports are only readable by their creator (and by you in the Dashboard).
+
+| Role       | NicknameReport |
+|------------|----------------|
+| `_world`   | (none)         |
+| `_icloud`  | Create         |
+| `_creator` | Read, Write    |
+
+**Moderating:** Dashboard → Data → Public Database → `NicknameReport` → sort by `createdAt`. For an offensive
+name, open the `PeriodScore` record(s) named in `reportedRecordName` (same player id prefix for other
+periods) and delete them or blank the `nickname` field (the app then shows `Player-XXXX`). Players without
+iCloud cannot send reports; the row is still hidden for them locally (App Group key
+`leaderboard.reportedRecords.v1`). Nicknames matching the built-in word list
+(`Packages/VocabCore/Sources/VocabCore/Resources/blocked-nicknames.txt`) can't be chosen in the app and are
+replaced by `Player-XXXX` when displayed.
+
 ## 3. Deploy to Production
 
 Before TestFlight / App Store (both use the **Production** environment):
 
-1. CloudKit Dashboard → **Deploy Schema Changes…** → review that `PeriodScore`, all fields and all
-   indexes are listed → **Deploy**.
+1. CloudKit Dashboard → **Deploy Schema Changes…** → review that `PeriodScore`, `NicknameReport`, all
+   fields and all indexes are listed → **Deploy**.
 2. Schema changes in Production are additive only (fields/types can't be removed later), so deploy
    once the schema above is final.
 3. Data is **not** copied: Development data stays in Development.
@@ -119,9 +151,10 @@ Before TestFlight / App Store (both use the **Production** environment):
   (Data → query → delete), or move scoring to a server.
 - **Players can only edit their own records** (`_creator` write role), so they cannot lower other
   players' scores.
-- **Nicknames are user-generated content.** App Review expects a way to report/hide offensive names
-  for public UGC; consider adding a profanity filter or a "report" action before launch, and moderate
-  in the Dashboard.
+- **Nicknames are user-generated content.** The app filters nicknames against a word list (en/tr/fr/es)
+  on entry and on display, and offers **Report nickname** on other players' rows (see `NicknameReport`
+  above). Check reports in the Dashboard regularly. The filter is client-side, so a modified client could
+  still write any nickname; the display-side check and reports cover that.
 - **Rate limits:** CloudKit returns `requestRateLimited` / `serviceUnavailable` under load; the app
   maps these to a network error and keeps the result queued (max 50 results, dropped after 40 days).
   Each quiz costs 3 fetch + 3 save requests; each leaderboard load costs 1 query + 1 record fetch, plus
